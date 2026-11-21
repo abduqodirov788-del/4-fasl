@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝟜 𝔽𝔸𝕊𝕃 — Premium Organik & Kundalik Ne'matlar Markazi</title>
+    <meta name="description" content="𝟜 𝔽𝔸𝕊𝕃 — Har mavsumda eng sarhil oziq-ovqat, tabiiy ichimliklar, shirinliklar va o'quv qurollarini 30 daqiqada tezkor yetkazib berish xizmati.">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Asosiy Premyum Stil Fayli -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. Yuqori e'lon paneli (Top Notification Bar) -->
+    <aside class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <span class="top-pill">⚡️ TEZKOR KURYER</span>
+                <span>Toshkent shahri bo'ylab <strong>30 daqiqada</strong> yetkazamiz! 150 000 so'mdan yuqori xaridlar uchun <strong>BEPUL</strong>.</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="tel:+998901234567" class="top-link">
+                    <span>📞</span> +998 (90) 123-45-67
+                </a>
+                <span style="opacity: 0.3;">|</span>
+                <span class="top-link">
+                    <span>⏰</span> Har kuni: 08:00 — 22:00
+                </span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 2. Shaffof yopishqoq sarlavha (Header) -->
+    <header class="header">
+        <div class="header-content">
+            <!-- Brend logotipi va shiori -->
+            <div class="brand-link" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="brand-crest">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 4 Faslni ifodalovchi geometrik hashamatli gulbarglar -->
+                        <path d="M20 4C20 4 23 13 28 15C33 17 38 18 38 20C38 22 33 23 28 25C23 27 20 36 20 36C20 36 17 27 12 25C7 23 2 22 2 20C2 18 7 17 12 15C17 13 20 4 20 4Z" fill="url(#crestGold)" stroke="#f7dc8c" stroke-width="1.2"/>
+                        <circle cx="20" cy="20" r="4.5" fill="#ffffff" stroke="#d4af37" stroke-width="1.5"/>
+                        <defs>
+                            <linearGradient id="crestGold" x1="2" y1="4" x2="38" y2="36" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#f5d179"/>
+                                <stop offset="0.5" stop-color="#d4af37"/>
+                                <stop offset="1" stop-color="#b88b1d"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="brand-text-wrap">
+                    <h1>𝟜 𝔽𝔸𝕊𝕃 <span class="badge-luxury">PREMIUM</span></h1>
+                    <p>Tabiiy & Sarhil Ne'matlar Maskani</p>
+                </div>
+            </div>
+
+            <!-- Qidiruv paneli (Desktop) -->
+            <div class="header-search">
+                <span class="header-search-icon">🔍</span>
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="Bahor ko'kati, tarvuz, shirin anor, qishki choy..." 
+                    oninput="handleSearch(this)"
+                >
+                <button id="search-clear-btn" class="search-clear-btn" onclick="clearSearch()" title="Tozalash">✕</button>
+            </div>
+
+            <!-- O'ng tomondagi amallar (Mavzu, Sevimlilar, Savat) -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="action-pill-btn" onclick="toggleDarkMode()" title="Kunduzgi / Tungi rejim">
+                    🌙 <span class="hide-mobile">Tungi rejim</span>
+                </button>
+                <button class="action-pill-btn hide-mobile" onclick="toggleOnlyFavorites(document.getElementById('fav-filter-btn'))" title="Sevimlilar">
+                    ❤️ <span class="badge-fav-count" id="header-fav-count">0</span>
+                </button>
+                <button class="cart-open-btn" onclick="toggleCart()" title="Savatni ko'rish">
+                    <span>🛒</span>
+                    <span class="hide-mobile">Savat</span>
+                    <span id="cart-count" class="cart-badge-pill">0</span>
+                    <span id="header-cart-sum" class="cart-sum-preview">0 so'm</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 3. Hero Vitrina Banneri -->
+        <section class="hero-banner">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <span>✨</span>
+                    <span>100% SARHIL VA TABIIY MAHSULOTLAR</span>
+                </div>
+                <h2 class="hero-title">
+                    To'rt faslning eng sarhil ne'matlari — <span>Sizning xonadoningizda</span>
+                </h2>
+                <p class="hero-desc">
+                    Yangi so'yilgan sarhil go'sht, sarxil meva-sabzavotlar, yaxna salqin ichimliklar hamda maktab buyumlari bevosita eshigingizgacha yetkaziladi.
+                </p>
+
+                <!-- 4 Fasl chiplari -->
+                <div class="seasons-row" id="hero-seasons-row">
+                    <button class="season-chip active" data-season="Hammasi" onclick="filterBySeason('Hammasi', this)" title="Barcha 30 ta mahsulot">
+                        ✨ Barcha fasllar (30)
+                    </button>
+                    <button class="season-chip" data-season="Bahor" onclick="filterBySeason('Bahor', this)" title="Bahor ne'matlari">
+                        🌸 Bahor (7)
+                    </button>
+                    <button class="season-chip" data-season="Yoz" onclick="filterBySeason('Yoz', this)" title="Yoz salqinligi">
+                        ☀️ Yoz (8)
+                    </button>
+                    <button class="season-chip" data-season="Kuz" onclick="filterBySeason('Kuz', this)" title="Kuz to'kinligi">
+                        🍂 Kuz (7)
+                    </button>
+                    <button class="season-chip" data-season="Qish" onclick="filterBySeason('Qish', this)" title="Qishki iliqlik">
+                        ❄️ Qish (8)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Afzalliklar paneli (Highlights Strip) -->
+        <section class="features-strip">
+            <div class="feature-box">
+                <div class="feature-icon-wrap">⚡️</div>
+                <div class="feature-text">
+                    <h4>30 Daqiqada Yetkazish</h4>
+                    <p>Shahar bo'ylab tezkori kuryerlik</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon-wrap">🌿</div>
+                <div class="feature-text">
+                    <h4>100% Sarhil & Halol</h4>
+                    <p>Sertifikatlangan tabiiy toza ozuqa</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon-wrap">💳</div>
+                <div class="feature-text">
+                    <h4>Qulay & Xavfsiz To'lov</h4>
+                    <p>Naqd pul, Uzcard, Humo, Click</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon-wrap">🛡️</div>
+                <div class="feature-text">
+                    <h4>Sifat Kafolati</h4>
+                    <p>Yoqmasa — pulingiz qaytariladi</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Boshqaruv va Filtrlar paneli -->
+        <section class="controls-bar">
+            <!-- Mobil qidiruv qatori -->
+            <div class="mobile-search-wrapper">
+                <input 
+                    type="text" 
+                    id="mobile-search-input" 
+                    class="mobile-search-input" 
+                    placeholder="🔍 4 Fasl sarhil mahsulotlarini qidirish..." 
+                    oninput="handleSearch(this)"
+                >
+            </div>
+
+            <!-- 4 Fasl Saralash Paneli -->
+            <div class="season-filter-card">
+                <div class="season-filter-title">
+                    <div class="season-icon-indicator">🍃</div>
+                    <div>
+                        <h3>4 Fasl Ne'matlari Bo'yicha Saralash</h3>
+                        <p>Har bir faslga xos sara va tabiiy 30 ta mahsulot to'plami</p>
+                    </div>
+                </div>
+                <div class="season-tabs-row">
+                    <button class="season-tab-btn active" data-season="Hammasi" onclick="filterBySeason('Hammasi', this)">
+                        <span>✨ Barcha Fasllar</span>
+                        <span id="season-count-Hammasi" class="season-tab-badge">30</span>
+                    </button>
+                    <button class="season-tab-btn season-bahor" data-season="Bahor" onclick="filterBySeason('Bahor', this)">
+                        <span>🌸 Bahor Ne'matlari</span>
+                        <span id="season-count-Bahor" class="season-tab-badge">7</span>
+                    </button>
+                    <button class="season-tab-btn season-yoz" data-season="Yoz" onclick="filterBySeason('Yoz', this)">
+                        <span>☀️ Yoz Salqinligi</span>
+                        <span id="season-count-Yoz" class="season-tab-badge">8</span>
+                    </button>
+                    <button class="season-tab-btn season-kuz" data-season="Kuz" onclick="filterBySeason('Kuz', this)">
+                        <span>🍂 Kuz To'kinligi</span>
+                        <span id="season-count-Kuz" class="season-tab-badge">7</span>
+                    </button>
+                    <button class="season-tab-btn season-qish" data-season="Qish" onclick="filterBySeason('Qish', this)">
+                        <span>❄️ Qishki Iliqlik</span>
+                        <span id="season-count-Qish" class="season-tab-badge">8</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="controls-row-top">
+                <!-- Toifa filtrlari -->
+                <div class="filter-pills-wrap">
+                    <button class="filter-btn active" onclick="filterProducts('Hammasi', this)">
+                        Barcha toifalar <span id="count-Hammasi" class="cat-count">30</span>
+                    </button>
+                    <button class="filter-btn" onclick="filterProducts('Oziq-ovqat', this)">
+                        🥩 Oziq-ovqat <span id="count-Oziq-ovqat" class="cat-count">7</span>
+                    </button>
+                    <button class="filter-btn" onclick="filterProducts('Ichimlik', this)">
+                        🥤 Ichimliklar <span id="count-Ichimlik" class="cat-count">7</span>
+                    </button>
+                    <button class="filter-btn" onclick="filterProducts('Shirinlik', this)">
+                        🍯 Shirinlik & Mevalar <span id="count-Shirinlik" class="cat-count">14</span>
+                    </button>
+                    <button class="filter-btn" onclick="filterProducts('O\'quv', this)">
+                        📚 O'quv qurollari <span id="count-O'quv" class="cat-count">2</span>
+                    </button>
+                    <button id="fav-filter-btn" class="filter-btn fav-filter-pill" onclick="toggleOnlyFavorites(this)">
+                        ♥ Sevimlilar: <span id="fav-count">0</span>
+                    </button>
+                </div>
+
+                <!-- Saralash tanlovi -->
+                <div class="sort-wrapper">
+                    <label for="sort-select" class="sort-label">Saralash:</label>
+                    <select id="sort-select" class="sort-select" onchange="handleSortChange(this)">
+                        <option value="default">Odatiy (Tavsiya)</option>
+                        <option value="price-low">Narx: Arzondan qimmatga ↑</option>
+                        <option value="price-high">Narx: Qimmatdan arzonga ↓</option>
+                        <option value="rating">Reyting: Eng yuqori ★</option>
+                        <option value="name">Nomi: A-Z</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Natijalar ko'rsatkichi -->
+            <div class="results-info-bar">
+                <span id="results-count">Yuklanmoqda...</span>
+                <span>To'lov turlari: Naqd pul • Uzcard / Humo • Click • Payme</span>
+            </div>
+        </section>
+
+        <!-- 6. Mahsulot kartochkalari panjarasi -->
+        <section id="products-grid" class="products-grid"></section>
+
+        <!-- 7. Do'kon manzili va Lokatsiya bo'limi -->
+        <section class="location-section">
+            <div class="location-info">
+                <span class="section-tag">📍 BIZNING LOKATSIYA</span>
+                <h2>𝟜 𝔽𝔸𝕊𝕃 Premium do'koniga tashrif buyuring</h2>
+                <div class="info-cards-list">
+                    <div class="info-card-item">
+                        <div class="info-card-icon">🏢</div>
+                        <div>
+                            <strong>Do'kon manzili:</strong>
+                            <p>Toshkent shahri, Yunusobod tumani, Amir Temur ko'chasi, 15-uy</p>
+                        </div>
+                    </div>
+                    <div class="info-card-item">
+                        <div class="info-card-icon">⏰</div>
+                        <div>
+                            <strong>Ishlash tartibi:</strong>
+                            <p>Har kuni soat 08:00 dan 22:00 gacha (tanaffussiz va dam olish kunlarisiz)</p>
+                        </div>
+                    </div>
+                    <div class="info-card-item">
+                        <div class="info-card-icon">📞</div>
+                        <div>
+                            <strong>Tezkor buyurtma va aloqa:</strong>
+                            <p>+998 (90) 123-45-67 / +998 (71) 200-44-55</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="location-actions-row">
+                    <a href="https://maps.google.com/?q=41.311081,69.240562" target="_blank" class="btn-map-primary">
+                        🗺️ Google Xaritada ko'rish →
+                    </a>
+                    <a href="https://t.me/" target="_blank" class="btn-map-secondary">
+                        💬 Telegram orqali yozish
+                    </a>
+                </div>
+            </div>
+            <div class="location-map-wrap">
+                <iframe 
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=69.2350%2C41.3080%2C69.2460%2C41.3140&layer=mapnik&marker=41.311081%2C69.240562" 
+                    loading="lazy"
+                    title="Do'kon joylashuv xaritasi">
+                </iframe>
+            </div>
+        </section>
+    </main>
+
+    <!-- 8. Savat yon oynasi (Slide-over Cart Sidebar) -->
+    <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+    <aside id="cart-sidebar" class="cart-sidebar">
+        <!-- Savat sarlavhasi -->
+        <div class="cart-header">
+            <div class="cart-header-title">
+                <h2>🛒 Savatingiz</h2>
+                <span id="cart-items-count-badge" class="cart-header-count">𝟜 𝔽𝔸𝕊𝕃</span>
+            </div>
+            <button class="close-cart-btn" onclick="toggleCart()" title="Yopish">✕</button>
+        </div>
+
+        <!-- Bepul yetkazish progress bari -->
+        <div class="free-shipping-tracker">
+            <div id="free-shipping-info" class="free-shipping-text">
+                Bepul yetkazishgacha: <strong>150 000 so'm</strong>
+            </div>
+            <div class="free-shipping-progress">
+                <div id="free-shipping-bar" class="free-shipping-bar" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <!-- Savatdagi mahsulotlar ro'yxati -->
+        <div id="cart-items" class="cart-items"></div>
+
+        <!-- Savat pastki qismi va Checkout -->
+        <div class="cart-footer">
+            <!-- Promokod kiritish -->
+            <div class="promo-box">
+                <input 
+                    type="text" 
+                    id="promo-input" 
+                    class="promo-input" 
+                    placeholder="Promokod (masalan: 4FASL)" 
+                    maxlength="12"
+                >
+                <button class="promo-btn" onclick="applyPromoCode()">Qo'llash</button>
+            </div>
+
+            <!-- Qabul qilish usulini tanlash (Yetkazib berish / Olib ketish) -->
+            <p class="cart-section-title">Qabul qilish usuli:</p>
+            <div class="option-cards-grid">
+                <label class="option-card">
+                    <input type="radio" name="deliveryMethod" value="delivery" checked onchange="toggleDeliveryMethod()">
+                    <span class="option-card-header">🚚 Yetkazib berish</span>
+                    <span class="option-card-desc">30 daqiqa (50 000 so'm)</span>
+                </label>
+                <label class="option-card">
+                    <input type="radio" name="deliveryMethod" value="pickup" onchange="toggleDeliveryMethod()">
+                    <span class="option-card-header">🏪 Olib ketish</span>
+                    <span class="option-card-desc">Do'kondan (Bepul)</span>
+                </label>
+            </div>
+
+            <!-- Manzil kiritish qatori -->
+            <div id="address-box" class="address-box">
+                <input 
+                    type="text" 
+                    id="delivery-address" 
+                    class="address-input" 
+                    placeholder="📍 Aniq manzil: Tuman, ko'cha, uy raqami..."
+                >
+            </div>
+
+            <!-- To'lov usulini tanlash -->
+            <p class="cart-section-title">To'lov usuli:</p>
+            <div class="payment-methods-grid">
+                <label class="payment-card">
+                    <input type="radio" name="paymentMethod" value="cash" checked onchange="togglePaymentMethod()">
+                    <span class="payment-card-icon">💵</span>
+                    <span class="payment-card-name">Naqd pul</span>
+                </label>
+                <label class="payment-card">
+                    <input type="radio" name="paymentMethod" value="card" onchange="togglePaymentMethod()">
+                    <span class="payment-card-icon">💳</span>
+                    <span class="payment-card-name">Bank kartasi</span>
+                </label>
+                <label class="payment-card">
+                    <input type="radio" name="paymentMethod" value="click" onchange="togglePaymentMethod()">
+                    <span class="payment-card-icon">📱</span>
+                    <span class="payment-card-name">Click / Payme</span>
+                </label>
+            </div>
+
+            <!-- Interaktiv Bank Kartasi oynasi -->
+            <div id="interactive-card-box" class="interactive-card-box" style="display: none;">
+                <!-- Karta vizual kartochkasi -->
+                <div class="visual-credit-card">
+                    <div class="visual-card-top">
+                        <div class="card-chip"></div>
+                        <span id="card-brand-label" class="card-brand-label">UZCARD / HUMO</span>
+                    </div>
+                    <div id="visual-card-number" class="visual-card-number">8600 •••• •••• ••••</div>
+                    <div class="visual-card-bottom">
+                        <div>
+                            <div style="opacity: 0.6; font-size: 9px;">KARTA EGASI</div>
+                            <div id="visual-card-holder" class="visual-card-holder">ISM FAMILIYA</div>
+                        </div>
+                        <div>
+                            <div style="opacity: 0.6; font-size: 9px;">MUDDATI</div>
+                            <div id="visual-card-expiry" class="visual-card-expiry">12/28</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Karta ma'lumotlarini kiritish maydonlari -->
+                <div class="card-inputs-grid">
+                    <input 
+                        type="text" 
+                        id="card-number" 
+                        class="card-input-field" 
+                        placeholder="8600 0000 0000 0000" 
+                        maxlength="19"
+                        oninput="formatCardNumber(this)"
+                    >
+                    <div class="card-row-split">
+                        <input 
+                            type="text" 
+                            id="card-expiry" 
+                            class="card-input-field" 
+                            placeholder="OO/YY" 
+                            maxlength="5"
+                            oninput="formatExpiry(this)"
+                        >
+                        <input 
+                            type="text" 
+                            id="card-holder" 
+                            class="card-input-field" 
+                            placeholder="Karta egasining ismi"
+                            oninput="updateCardHolder(this)"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hisob-kitob tafsilotlari -->
+            <div class="checkout-summary-box">
+                <div class="summary-line">
+                    <span>Mahsulotlar qiymati:</span>
+                    <span id="summary-subtotal">0 so'm</span>
+                </div>
+                <div id="discount-row" class="summary-line discount-line" style="display: none;">
+                    <span>Maxsus chegirma (Kupon):</span>
+                    <span id="summary-discount">-0 so'm</span>
+                </div>
+                <div class="summary-line">
+                    <span>Yetkazib berish xizmati:</span>
+                    <span id="summary-delivery">50 000 so'm</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-total-line">
+                    <span>Jami to'lov:</span>
+                    <strong id="summary-total">0 so'm</strong>
+                </div>
+            </div>
+
+            <!-- Buyurtmani tasdiqlash tugmasi -->
+            <button class="btn-checkout-submit" onclick="checkoutOrder()">
+                <span>✨</span> Buyurtmani rasmiylashtirish
+            </button>
+        </div>
+    </aside>
+
+    <!-- 9. Mahsulotni tezkor ko'rish modali (Quick View Modal) -->
+    <div id="quick-view-modal" class="modal-overlay" onclick="if(event.target === this) closeQuickView()">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeQuickView()">✕</button>
+            <div class="modal-grid">
+                <div class="modal-media">
+                    <img id="modal-img" src="" alt="" class="modal-img">
+                </div>
+                <div class="modal-details">
+                    <span id="modal-category" class="modal-tag">Kategoriya</span>
+                    <h3 id="modal-title" class="modal-title">Mahsulot nomi</h3>
+                    <div id="modal-rating" class="modal-rating-row">★ 5.0 (0 ta sharh)</div>
+                    <p id="modal-desc" class="modal-desc">Mahsulot tavsifi bu yerda ko'rinadi.</p>
+                    <div class="modal-price-box">
+                        <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Hajm / Birlik: <span id="modal-unit" style="color: var(--text-main);">1 dona</span></div>
+                        <div id="modal-price" class="modal-price">0 so'm</div>
+                    </div>
+                    <div class="modal-action-row">
+                        <button id="modal-add-btn" class="modal-add-btn">
+                            🛒 Savatga qo'shish
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10. Buyurtma cheki modali (Order Receipt Modal) -->
+    <div id="receipt-modal" class="modal-overlay">
+        <div class="receipt-modal-card">
+            <div class="receipt-celebration-badge">✓</div>
+            <h3 class="receipt-title">Buyurtmangiz qabul qilindi!</h3>
+            <p class="receipt-subtitle">Buyurtmangiz tezkorlik bilan kuryerga yo'naltirildi.</p>
+
+            <div class="receipt-bill-box">
+                <div class="receipt-bill-row">
+                    <span>Buyurtma raqami:</span>
+                    <strong id="receipt-order-no">#FASL-000000</strong>
+                </div>
+                <div class="receipt-bill-row">
+                    <span>Qabul qiluvchi manzil:</span>
+                    <strong id="receipt-address">Toshkent shahri</strong>
+                </div>
+                <div class="receipt-bill-row">
+                    <span>To'lov usuli:</span>
+                    <strong id="receipt-payment">Naqd pul</strong>
+                </div>
+                <div class="receipt-bill-row">
+                    <span>Yetkazish vaqti:</span>
+                    <strong>30 - 45 daqiqa</strong>
+                </div>
+                <div class="receipt-bill-row total">
+                    <span>To'lov summasi:</span>
+                    <span id="receipt-total" style="color: var(--primary);">0 so'm</span>
+                </div>
+            </div>
+
+            <div class="receipt-actions">
+                <a href="https://t.me/" target="_blank" class="btn-receipt-telegram">
+                    <span>📱</span> Telegram orqali chekni olish
+                </a>
+                <button class="btn-receipt-close" onclick="closeReceiptModal()">
+                    Do'konga qaytish
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 11. Sayt ostki qismi (Footer) -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>𝟜 𝔽𝔸𝕊𝕃 <span class="badge-luxury">MARKET</span></h3>
+                <p>
+                    Har bir mavsumning eng sarhil, toza va tabiiy oziq-ovqatlari, sarxil ichimliklar hamda maktab buyumlarini uyingizgacha tezkor va sifatli yetkazib beramiz.
+                </p>
+                <div class="social-pills">
+                    <a href="https://t.me/" class="social-pill" title="Telegram">✈️</a>
+                    <a href="https://instagram.com/" class="social-pill" title="Instagram">📷</a>
+                    <a href="https://facebook.com/" class="social-pill" title="Facebook">🌐</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>4 Fasl & Toifalar</h4>
+                <ul class="footer-links">
+                    <li><a href="javascript:void(0)" onclick="filterBySeason('Bahor', this)">🌸 Bahor Ne'matlari (7)</a></li>
+                    <li><a href="javascript:void(0)" onclick="filterBySeason('Yoz', this)">☀️ Yoz Salqinligi (8)</a></li>
+                    <li><a href="javascript:void(0)" onclick="filterBySeason('Kuz', this)">🍂 Kuz To'kinligi (7)</a></li>
+                    <li><a href="javascript:void(0)" onclick="filterBySeason('Qish', this)">❄️ Qishki Iliqlik (8)</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Mijozlarga</h4>
+                <ul class="footer-links">
+                    <li><a href="javascript:void(0)">🚚 Yetkazib berish shartlari</a></li>
+                    <li><a href="javascript:void(0)">💳 To'lov usullari</a></li>
+                    <li><a href="javascript:void(0)">🛡️ Sifat va qaytarish kafolati</a></li>
+                    <li><a href="javascript:void(0)">📍 Bizning do'konlarimiz</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Xavfsiz To'lov</h4>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">
+                    O'zbekistondagi barcha to'lov tizimlari orqali to'lovlarni qabul qilamiz:
+                </p>
+                <div class="payment-badges-row">
+                    <span class="payment-chip">Uzcard</span>
+                    <span class="payment-chip">Humo</span>
+                    <span class="payment-chip">Visa</span>
+                    <span class="payment-chip">Mastercard</span>
+                    <span class="payment-chip">Click</span>
+                    <span class="payment-chip">Payme</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>© 2026 𝟜 𝔽𝔸𝕊𝕃 PREMIUM MARKET. Barcha huquqlar himoyalangan.</div>
+            <div>Sifat va Halollik — Bizning Bosh Maqsadimiz.</div>
+        </div>
+    </footer>
+
+    <!-- 12. Toast Bildirishnoma konteyneri -->
+    <div id="toast" class="toast">✨ Mahsulot savatga qo'shildi!</div>
+
+    <!-- Asosiy Skript -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,2542 @@
+/* ==========================================================================
+   𝟜 𝔽𝔸𝕊𝕃 — PREMIUM MARKET
+   Zamonaviy, nafis va premyum sifatdagi dizayn tizimi
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Ranglar palitrasi va mavzular (Light / Dark)
+   -------------------------------------------------------------------------- */
+:root {
+    /* Kunduzgi rejim (Royal Emerald, Warm Champagne Gold & Crisp Alabaster) */
+    --bg-color: #f7f9f7;
+    --card-bg: #ffffff;
+    --card-bg-hover: #ffffff;
+    --header-bg: rgba(255, 255, 255, 0.88);
+    --topbar-bg: #0b382c;
+    --topbar-text: #e2ede8;
+    
+    --text-main: #0d1f18;
+    --text-muted: #5a6e64;
+    --text-light: #8ba095;
+    
+    /* Asosiy va urg'u ranglari */
+    --primary: #0d4d3a;
+    --primary-light: #166b52;
+    --primary-dark: #083327;
+    --primary-soft: #eaf5f0;
+    
+    --gold: #d4af37;
+    --gold-light: #f3d77b;
+    --gold-dark: #b88b1d;
+    --gold-soft: #fbf6e8;
+    
+    --danger: #ef4444;
+    --danger-soft: #fee2e2;
+    --success: #10b981;
+    --success-soft: #d1fae5;
+    
+    /* Gradientlar */
+    --hero-gradient: linear-gradient(135deg, #093427 0%, #125541 45%, #8f6c18 100%);
+    --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f7dc8c 50%, #b88b1d 100%);
+    --primary-gradient: linear-gradient(135deg, #0d4d3a 0%, #177357 100%);
+    --card-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, #ffffff 100%);
+    
+    /* Chegaralar va soyalar */
+    --border-color: #e3eae5;
+    --border-focus: #0d4d3a;
+    --border-gold: rgba(212, 175, 55, 0.35);
+    
+    --shadow-xs: 0 2px 6px rgba(13, 77, 58, 0.04);
+    --shadow-sm: 0 4px 14px rgba(13, 77, 58, 0.06);
+    --shadow-md: 0 12px 28px -4px rgba(13, 77, 58, 0.09), 0 4px 10px rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 22px 48px -8px rgba(13, 77, 58, 0.16);
+    --shadow-gold: 0 8px 24px rgba(212, 175, 55, 0.25);
+    
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
+    --radius-xl: 30px;
+    --radius-pill: 9999px;
+    
+    --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-smooth: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Tungi rejim (Obsidian Velvet, Luminous Emerald & Champagne Gold) */
+body.dark-mode {
+    --bg-color: #070d0a;
+    --card-bg: #101914;
+    --card-bg-hover: #14211a;
+    --header-bg: rgba(16, 25, 20, 0.88);
+    --topbar-bg: #040806;
+    --topbar-text: #9ab3a5;
+    
+    --text-main: #f2f7f4;
+    --text-muted: #8da698;
+    --text-light: #597364;
+    
+    --primary: #22c55e;
+    --primary-light: #4ade80;
+    --primary-dark: #16a34a;
+    --primary-soft: rgba(34, 197, 94, 0.12);
+    
+    --gold: #f1c750;
+    --gold-light: #f9e29a;
+    --gold-dark: #c99a22;
+    --gold-soft: rgba(241, 199, 80, 0.14);
+    
+    --danger: #f87171;
+    --danger-soft: rgba(248, 113, 113, 0.15);
+    --success: #34d399;
+    --success-soft: rgba(52, 211, 153, 0.15);
+    
+    --hero-gradient: linear-gradient(135deg, #051610 0%, #0d2e23 50%, #463406 100%);
+    --gold-gradient: linear-gradient(135deg, #f1c750 0%, #fae6ab 50%, #c99a22 100%);
+    --primary-gradient: linear-gradient(135deg, #15803d 0%, #22c55e 100%);
+    --card-gradient: linear-gradient(180deg, #131e18 0%, #0f1813 100%);
+    
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-focus: #22c55e;
+    --border-gold: rgba(241, 199, 80, 0.3);
+    
+    --shadow-xs: 0 2px 6px rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 14px 34px -4px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 24px 52px -6px rgba(0, 0, 0, 0.85);
+    --shadow-gold: 0 8px 24px rgba(241, 199, 80, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset va Boshlang'ich sozlamalar
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Maxsus skrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+body.dark-mode ::-webkit-scrollbar-thumb {
+    background: #23332a;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+input, select, textarea {
+    font-family: inherit;
+    color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   3. Yuqori bildirishnoma paneli (Top Notification Bar)
+   -------------------------------------------------------------------------- */
+.top-bar {
+    background-color: var(--topbar-bg);
+    color: var(--topbar-text);
+    padding: 8px 16px;
+    font-size: 12.5px;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.top-bar-content {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.top-pill {
+    background: rgba(212, 175, 55, 0.2);
+    color: var(--gold-light);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 12px;
+}
+
+.top-link {
+    color: var(--topbar-text);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 0.9;
+    transition: opacity var(--transition-fast), color var(--transition-fast);
+}
+
+.top-link:hover {
+    opacity: 1;
+    color: var(--gold-light);
+}
+
+/* --------------------------------------------------------------------------
+   4. Shaffof, yopishqoq sarlavha (Sticky Glass Header)
+   -------------------------------------------------------------------------- */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    background: var(--header-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 20px;
+    transition: all var(--transition-normal);
+}
+
+.header-content {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Brend logotipi */
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.brand-crest {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold-light);
+    box-shadow: 0 4px 16px rgba(13, 77, 58, 0.25);
+    border: 1.5px solid var(--border-gold);
+    transition: transform var(--transition-normal);
+}
+
+.brand-link:hover .brand-crest {
+    transform: rotate(5deg) scale(1.04);
+}
+
+.brand-crest svg {
+    width: 28px;
+    height: 28px;
+}
+
+.brand-text-wrap h1 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    line-height: 1.15;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-main);
+}
+
+.badge-luxury {
+    font-size: 10px;
+    font-weight: 800;
+    background: var(--gold-gradient);
+    color: #0d291e;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 6px rgba(212, 175, 55, 0.25);
+}
+
+.brand-text-wrap p {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+/* Headerdagi qidiruv paneli (Desktop) */
+.header-search {
+    flex: 1;
+    max-width: 440px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.header-search-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--text-muted);
+    font-size: 15px;
+    pointer-events: none;
+}
+
+.header-search input {
+    width: 100%;
+    padding: 10px 40px 10px 40px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-size: 13.5px;
+    font-weight: 500;
+    outline: none;
+    transition: all var(--transition-normal);
+}
+
+.header-search input:focus {
+    border-color: var(--border-focus);
+    background-color: var(--card-bg);
+    box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+.search-clear-btn {
+    position: absolute;
+    right: 12px;
+    color: var(--text-muted);
+    font-size: 14px;
+    cursor: pointer;
+    display: none;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.06);
+}
+
+.search-clear-btn.active {
+    display: flex;
+}
+
+/* Header amallari (Rejim, Sevimlilar, Savat) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-pill-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 15px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-main);
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-xs);
+    transition: all var(--transition-fast);
+}
+
+.action-pill-btn:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.badge-fav-count {
+    background: var(--danger-soft);
+    color: var(--danger);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: var(--radius-pill);
+}
+
+/* Savat tugmasi (Premyum gradient) */
+.cart-open-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 18px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-gradient);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(13, 77, 58, 0.28);
+    transition: all var(--transition-normal);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cart-open-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(13, 77, 58, 0.38);
+}
+
+.cart-open-btn:active {
+    transform: translateY(0);
+}
+
+.cart-badge-pill {
+    background: var(--gold-gradient);
+    color: #0b291d;
+    font-size: 12px;
+    font-weight: 800;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.cart-sum-preview {
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.95;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+    padding-left: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Asosiy konteyner
+   -------------------------------------------------------------------------- */
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero Banner (Premyum fasllar vitrinasi)
+   -------------------------------------------------------------------------- */
+.hero-banner {
+    background: var(--hero-gradient);
+    border-radius: var(--radius-xl);
+    padding: 44px 48px;
+    color: #ffffff;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Fon shulasi */
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.22) 0%, rgba(212, 175, 55, 0) 70%);
+    pointer-events: none;
+}
+
+.hero-banner::after {
+    content: "𝟜";
+    position: absolute;
+    right: 30px;
+    bottom: -40px;
+    font-size: 200px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.04);
+    pointer-events: none;
+    user-select: none;
+    font-family: 'Playfair Display', serif;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+}
+
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    padding: 6px 16px;
+    border-radius: var(--radius-pill);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+    letter-spacing: 0.3px;
+}
+
+.hero-title {
+    font-size: 2.35rem;
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.6px;
+    margin-bottom: 14px;
+    color: #ffffff;
+}
+
+.hero-title span {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 24px;
+    max-width: 580px;
+}
+
+/* 4 Fasl chiplari */
+.seasons-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.season-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 7px 16px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    font-family: inherit;
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+.season-chip:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-2px);
+}
+
+.season-chip:active {
+    transform: scale(0.96);
+}
+
+.season-chip.active {
+    background: rgba(212, 175, 55, 0.28);
+    border-color: var(--gold-light);
+    color: var(--gold-light);
+    box-shadow: 0 0 14px rgba(212, 175, 55, 0.35);
+}
+
+/* Afzalliklar paneli (Highlights Grid) */
+.features-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+}
+
+.feature-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow-xs);
+    transition: all var(--transition-fast);
+}
+
+.feature-box:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+    border-color: var(--primary);
+}
+
+.feature-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.feature-text h4 {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.25;
+    margin-bottom: 2px;
+}
+
+.feature-text p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   7. Boshqaruv paneli (Qidiruv, Toifalar, Saralash)
+   -------------------------------------------------------------------------- */
+.controls-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.controls-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* Mobil qidiruv qatori */
+.mobile-search-wrapper {
+    display: none;
+    width: 100%;
+    position: relative;
+}
+
+.mobile-search-input {
+    width: 100%;
+    padding: 12px 18px 12px 42px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    font-size: 14px;
+    outline: none;
+}
+
+.mobile-search-input:focus {
+    border-color: var(--primary);
+}
+
+/* 4 Fasl Saralash Kartasi */
+.season-filter-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    box-shadow: var(--shadow-xs);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: all var(--transition-normal);
+}
+
+.season-filter-card:hover {
+    border-color: rgba(212, 175, 55, 0.35);
+    box-shadow: var(--shadow-sm);
+}
+
+.season-filter-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.season-icon-indicator {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--gold-soft);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.season-filter-title h3 {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.25;
+    margin-bottom: 2px;
+}
+
+.season-filter-title p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.season-tabs-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.season-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-xs);
+    transition: all var(--transition-fast);
+    outline: none;
+    user-select: none;
+}
+
+.season-tab-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.season-tab-btn:active {
+    transform: scale(0.97);
+}
+
+.season-tab-btn.active {
+    background: var(--primary-gradient);
+    border-color: transparent;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(13, 77, 58, 0.28);
+}
+
+.season-tab-badge {
+    background: rgba(0, 0, 0, 0.08);
+    color: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    transition: background var(--transition-fast);
+}
+
+body.dark-mode .season-tab-badge {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.season-tab-btn.active .season-tab-badge {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+/* Fasllarga xos maxsus ranglar faol holatda */
+.season-tab-btn.season-bahor.active {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35) !important;
+}
+
+.season-tab-btn.season-yoz.active {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35) !important;
+}
+
+.season-tab-btn.season-kuz.active {
+    background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%) !important;
+    box-shadow: 0 4px 16px rgba(234, 88, 12, 0.35) !important;
+}
+
+.season-tab-btn.season-qish.active {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%) !important;
+    box-shadow: 0 4px 16px rgba(14, 165, 233, 0.35) !important;
+}
+
+/* Toifa tugmalari */
+.filter-pills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    font-size: 13.5px;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    box-shadow: var(--shadow-xs);
+    transition: all var(--transition-fast);
+    user-select: none;
+}
+
+.filter-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--primary-gradient);
+    border-color: transparent;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(13, 77, 58, 0.25);
+}
+
+.filter-btn .cat-count {
+    background: rgba(0, 0, 0, 0.08);
+    color: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: var(--radius-pill);
+}
+
+.filter-btn.active .cat-count {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+/* Sevimlilar filtr tugmasi */
+.fav-filter-pill {
+    border-color: rgba(239, 68, 68, 0.35);
+    color: var(--danger);
+}
+
+.fav-filter-pill:hover,
+.fav-filter-pill.active {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+    border-color: transparent;
+    color: #ffffff !important;
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+}
+
+/* Saralash qutisi */
+.sort-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sort-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.sort-select {
+    padding: 9px 16px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    font-size: 13px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.sort-select:focus {
+    border-color: var(--primary);
+}
+
+/* Natijalar hisoblagichi */
+.results-info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 0 4px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Mahsulot kartochkalari panjarasi (Product Cards Grid)
+   -------------------------------------------------------------------------- */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+@keyframes cardPopIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.product-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+    position: relative;
+    animation: cardPopIn 0.4s ease backwards;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-gold);
+}
+
+/* Rasm maydoni */
+.card-media {
+    position: relative;
+    width: 100%;
+    height: 195px;
+    overflow: hidden;
+    background-color: #f1f5f3;
+}
+
+body.dark-mode .card-media {
+    background-color: #17241d;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .card-img {
+    transform: scale(1.08);
+}
+
+/* Badjlar */
+.card-badges {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 2;
+}
+
+.badge-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.3px;
+    backdrop-filter: blur(8px);
+}
+
+.badge-category {
+    background: rgba(13, 77, 58, 0.85);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.badge-highlight {
+    background: var(--gold-gradient);
+    color: #0d291e;
+    font-weight: 800;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.badge-season {
+    font-size: 10.5px;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.badge-season.season-bahor {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(5, 150, 105, 0.95));
+}
+
+.badge-season.season-yoz {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.95), rgba(217, 119, 6, 0.95));
+}
+
+.badge-season.season-kuz {
+    background: linear-gradient(135deg, rgba(234, 88, 12, 0.95), rgba(194, 65, 12, 0.95));
+}
+
+.badge-season.season-qish {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.95), rgba(2, 132, 199, 0.95));
+}
+
+/* Sevimlilar tugmasi */
+.card-fav-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-fast);
+    z-index: 3;
+}
+
+body.dark-mode .card-fav-btn {
+    background: rgba(16, 25, 20, 0.85);
+    color: #94a3b8;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.card-fav-btn:hover {
+    transform: scale(1.15);
+}
+
+.card-fav-btn.liked {
+    color: var(--danger);
+    background: #ffffff;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+}
+
+/* Tezkor ko'rish tugmasi (Overlay) */
+.quick-view-overlay-btn {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%) translateY(40px);
+    background: rgba(13, 77, 58, 0.92);
+    color: #ffffff;
+    backdrop-filter: blur(6px);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    opacity: 0;
+    transition: all var(--transition-normal);
+    z-index: 3;
+    white-space: nowrap;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.product-card:hover .quick-view-overlay-btn {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* Kartochka kontenti */
+.card-body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.card-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.stars-gold {
+    color: var(--gold);
+    letter-spacing: -1px;
+}
+
+.card-title {
+    font-size: 1.12rem;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.35;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-unit {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 14px;
+}
+
+/* Kartochka tagligi (Narx va Savatga qo'shish) */
+.card-bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.card-price-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-price-label {
+    font-size: 11px;
+    color: var(--text-light);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.card-price-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.2;
+}
+
+/* Savatga qo'shish / Qadam boshqaruvi (Card Actions) */
+.card-action-container {
+    min-width: 115px;
+}
+
+.btn-add-cart {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all var(--transition-fast);
+}
+
+.btn-add-cart:hover {
+    background: var(--primary-gradient);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(13, 77, 58, 0.25);
+}
+
+.btn-add-cart:active {
+    transform: scale(0.96);
+}
+
+/* Karta ichidagi son boshqaruvi (Quantity Stepper) */
+.card-qty-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--primary-soft);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    padding: 3px;
+}
+
+.stepper-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    color: var(--text-main);
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-xs);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.stepper-btn:hover {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.stepper-count {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--primary);
+    padding: 0 8px;
+}
+
+/* Bo'sh natija holati */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    border: 1px dashed var(--border-color);
+}
+
+.empty-state-icon {
+    font-size: 52px;
+    margin-bottom: 16px;
+    opacity: 0.8;
+}
+
+.empty-state h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.btn-reset-filters {
+    padding: 10px 22px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-gradient);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 13.5px;
+}
+
+/* --------------------------------------------------------------------------
+   9. Manzil va Lokatsiya bo'limi (Store Location & Contacts)
+   -------------------------------------------------------------------------- */
+.location-section {
+    background: var(--card-bg);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 36px;
+    align-items: center;
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.location-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-tag {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--gold-dark);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+body.dark-mode .section-tag {
+    color: var(--gold-light);
+}
+
+.location-info h2 {
+    font-size: 1.95rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 24px;
+    letter-spacing: -0.4px;
+}
+
+.info-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.info-card-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 16px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+}
+
+.info-card-icon {
+    font-size: 22px;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-card-item strong {
+    font-size: 13.5px;
+    color: var(--text-main);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.info-card-item p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.location-actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.btn-map-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    background: var(--primary-gradient);
+    color: #ffffff;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 16px rgba(13, 77, 58, 0.25);
+    transition: all var(--transition-fast);
+}
+
+.btn-map-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(13, 77, 58, 0.35);
+}
+
+.btn-map-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--card-bg);
+    border: 1.5px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 14px;
+    transition: all var(--transition-fast);
+}
+
+.btn-map-secondary:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.location-map-wrap {
+    height: 100%;
+    min-height: 320px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 2px solid var(--border-color);
+}
+
+.location-map-wrap iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    border: none;
+    display: block;
+}
+
+/* --------------------------------------------------------------------------
+   10. Savat yon paneli (Slide-over Cart Sidebar)
+   -------------------------------------------------------------------------- */
+.cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 13, 10, 0.7);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-normal);
+    z-index: 150;
+}
+
+.cart-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -460px;
+    width: 100%;
+    max-width: 440px;
+    height: 100vh;
+    background-color: var(--card-bg);
+    box-shadow: -12px 0 40px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    transition: right var(--transition-smooth);
+    z-index: 160;
+    border-left: 1px solid var(--border-color);
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+/* Savat sarlavhasi */
+.cart-header {
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+}
+
+.cart-header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-header-title h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.cart-header-count {
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+}
+
+.close-cart-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    font-size: 15px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.close-cart-btn:hover {
+    background: var(--danger-soft);
+    color: var(--danger);
+    transform: rotate(90deg);
+}
+
+/* Bepul yetkazish indikatori */
+.free-shipping-tracker {
+    padding: 12px 20px;
+    background: var(--gold-soft);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    font-size: 12.5px;
+}
+
+.free-shipping-text {
+    font-weight: 700;
+    color: var(--gold-dark);
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+body.dark-mode .free-shipping-text {
+    color: var(--gold-light);
+}
+
+.free-shipping-progress {
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.free-shipping-bar {
+    height: 100%;
+    background: var(--gold-gradient);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+}
+
+/* Savat mahsulotlari ro'yxati */
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cart-item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-fast);
+}
+
+.cart-item-row:hover {
+    border-color: var(--primary);
+}
+
+.cart-item-thumb {
+    width: 58px;
+    height: 58px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #e2e8e4;
+}
+
+.cart-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.cart-item-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.25;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cart-item-price {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.cart-item-unit-price {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.cart-item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.cart-stepper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    padding: 2px 4px;
+}
+
+.cart-qty-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    color: var(--text-main);
+    font-size: 12px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.cart-qty-btn:hover {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.cart-qty-num {
+    font-size: 12.5px;
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+}
+
+.cart-remove-btn {
+    color: var(--text-light);
+    font-size: 12px;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.cart-remove-btn:hover {
+    color: var(--danger);
+}
+
+/* Savat bo'sh xabari */
+.cart-empty-view {
+    text-align: center;
+    padding: 40px 10px;
+    color: var(--text-muted);
+}
+
+.cart-empty-view .empty-icon {
+    font-size: 44px;
+    margin-bottom: 10px;
+}
+
+/* Savat pastki qismi (Checkout & To'lov) */
+.cart-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border-color);
+    background: var(--card-bg);
+    max-height: 58vh;
+    overflow-y: auto;
+}
+
+/* Promokod bo'limi */
+.promo-box {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.promo-input {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border-color);
+    background: var(--bg-color);
+    font-size: 12.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.promo-input:focus {
+    border-color: var(--primary);
+}
+
+.promo-btn {
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.promo-btn:hover {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+/* Yetkazib berish va To'lov usuli kartalari */
+.cart-section-title {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.option-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.option-card {
+    display: flex;
+    flex-direction: column;
+    padding: 9px 12px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border-color);
+    background: var(--bg-color);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.option-card input {
+    position: absolute;
+    opacity: 0;
+}
+
+.option-card-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 2px;
+}
+
+.option-card-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.option-card:has(input:checked) {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+}
+
+.option-card:has(input:checked) .option-card-header {
+    color: var(--primary);
+}
+
+/* To'lov usullari (3 ta variant: Naqd / Karta / Click) */
+.payment-methods-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.payment-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 6px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border-color);
+    background: var(--bg-color);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.payment-card input {
+    display: none;
+}
+
+.payment-card-icon {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.payment-card-name {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.payment-card:has(input:checked) {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+}
+
+.payment-card:has(input:checked) .payment-card-name {
+    color: var(--primary);
+}
+
+/* Interaktiv Bank kartasi vidjeti */
+.interactive-card-box {
+    margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.visual-credit-card {
+    background: linear-gradient(135deg, #093427 0%, #165e49 50%, #c49926 100%);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    color: #ffffff;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.visual-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.card-chip {
+    width: 34px;
+    height: 26px;
+    background: linear-gradient(135deg, #d4af37 0%, #fef08a 100%);
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.card-brand-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--gold-light);
+}
+
+.visual-card-number {
+    font-size: 15px;
+    font-family: monospace;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.visual-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 11px;
+}
+
+.visual-card-holder {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.visual-card-expiry {
+    font-family: monospace;
+    font-weight: 700;
+}
+
+/* Karta kiritish maydonlari */
+.card-inputs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card-input-field {
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-main);
+    font-size: 13px;
+    font-weight: 600;
+    outline: none;
+}
+
+.card-input-field:focus {
+    border-color: var(--primary);
+}
+
+.card-row-split {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 8px;
+}
+
+/* Manzil maydoni */
+.address-box {
+    margin-bottom: 14px;
+}
+
+.address-input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-main);
+    font-size: 13px;
+    font-weight: 600;
+    outline: none;
+}
+
+.address-input:focus {
+    border-color: var(--primary);
+}
+
+/* To'lov hisob-kitob qatori (Summary Breakdown) */
+.checkout-summary-box {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    margin-bottom: 14px;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.summary-line.discount-line {
+    color: var(--success);
+    font-weight: 700;
+}
+
+.summary-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 8px 0;
+}
+
+.summary-total-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.summary-total-line strong {
+    color: var(--primary);
+}
+
+/* Buyurtma tugmasi */
+.btn-checkout-submit {
+    width: 100%;
+    padding: 14px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-gradient);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(13, 77, 58, 0.3);
+    transition: all var(--transition-fast);
+}
+
+.btn-checkout-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(13, 77, 58, 0.4);
+}
+
+.btn-checkout-submit:active {
+    transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   11. Tezkor ko'rish modali (Quick View Modal)
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 13, 10, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-normal);
+    z-index: 200;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-xl);
+    max-width: 680px;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    position: relative;
+    transform: scale(0.95);
+    transition: transform var(--transition-normal);
+}
+
+.modal-overlay.open .modal-card {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: var(--shadow-xs);
+    transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+    background: var(--danger-soft);
+    color: var(--danger);
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+}
+
+.modal-media {
+    background: #eef3f0;
+    height: 100%;
+    min-height: 280px;
+}
+
+body.dark-mode .modal-media {
+    background: #15221b;
+}
+
+.modal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-details {
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-tag {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+}
+
+body.dark-mode .modal-tag {
+    color: var(--gold-light);
+}
+
+.modal-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.3;
+    margin-bottom: 8px;
+}
+
+.modal-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+}
+
+.modal-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.modal-price-box {
+    margin-bottom: 20px;
+}
+
+.modal-price {
+    font-size: 1.65rem;
+    font-weight: 900;
+    color: var(--primary);
+}
+
+.modal-action-row {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.modal-add-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-gradient);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(13, 77, 58, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   12. Buyurtma tasdiqlash cheki (Order Confirmation Receipt Modal)
+   -------------------------------------------------------------------------- */
+.receipt-modal-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-xl);
+    max-width: 480px;
+    width: 100%;
+    border: 1px solid var(--border-gold);
+    box-shadow: var(--shadow-lg);
+    padding: 32px 28px;
+    text-align: center;
+    transform: scale(0.95);
+    transition: transform var(--transition-normal);
+}
+
+.modal-overlay.open .receipt-modal-card {
+    transform: scale(1);
+}
+
+.receipt-celebration-badge {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--success-soft);
+    color: var(--success);
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    border: 2px solid rgba(16, 185, 129, 0.3);
+}
+
+.receipt-title {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.receipt-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 22px;
+}
+
+.receipt-bill-box {
+    background: var(--bg-color);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    text-align: left;
+    margin-bottom: 22px;
+    font-size: 13px;
+}
+
+.receipt-bill-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
+
+.receipt-bill-row.total {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-main);
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+    margin-bottom: 0;
+}
+
+.receipt-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-receipt-telegram {
+    padding: 12px;
+    border-radius: var(--radius-pill);
+    background: #0088cc;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-receipt-close {
+    padding: 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 13.5px;
+}
+
+/* --------------------------------------------------------------------------
+   13. Footer (Sayt ostki qismi)
+   -------------------------------------------------------------------------- */
+.footer {
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 60px 20px 30px;
+    color: var(--text-main);
+}
+
+.footer-content {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-brand h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-brand p {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.social-pills {
+    display: flex;
+    gap: 8px;
+}
+
+.social-pill {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    font-size: 14px;
+    transition: all var(--transition-fast);
+}
+
+.social-pill:hover {
+    background: var(--primary);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.footer-col h4 {
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-main);
+    margin-bottom: 16px;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links li a {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    transition: color var(--transition-fast);
+}
+
+.footer-links li a:hover {
+    color: var(--primary);
+}
+
+.payment-badges-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.payment-chip {
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.footer-bottom {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   14. Toast Bildirishnoma (Toast Notifications)
+   -------------------------------------------------------------------------- */
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 300;
+    background: #0d291e;
+    color: #ffffff;
+    border: 1px solid var(--border-gold);
+    padding: 13px 22px;
+    border-radius: var(--radius-pill);
+    font-size: 13.5px;
+    font-weight: 700;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateY(60px);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    pointer-events: auto;
+}
+
+@media (max-width: 600px) {
+    .toast {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+body.dark-mode .toast {
+    background: #11241a;
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   15. Moslashuvchanlik (Responsive Breakpoints)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .features-strip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .location-section {
+        grid-template-columns: 1fr;
+    }
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-bar-right {
+        display: none;
+    }
+    .header-search {
+        display: none;
+    }
+    .mobile-search-wrapper {
+        display: block;
+    }
+    .hero-banner {
+        padding: 30px 24px;
+    }
+    .hero-title {
+        font-size: 1.85rem;
+    }
+    .features-strip {
+        grid-template-columns: 1fr;
+    }
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 14px;
+    }
+    .card-media {
+        height: 150px;
+    }
+    .card-body {
+        padding: 12px;
+    }
+    .card-title {
+        font-size: 0.98rem;
+    }
+    .card-price-value {
+        font-size: 1.1rem;
+    }
+    .btn-add-cart {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+    .modal-media {
+        height: 180px;
+        min-height: auto;
+    }
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    .cart-sidebar {
+        max-width: 100%;
+        right: -100%;
+    }
+    .hide-mobile {
+        display: none;
+    }
+    .cart-sum-preview {
+        display: none;
+    }
+}
